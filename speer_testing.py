@@ -1,6 +1,9 @@
 import time
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
+from urllib3.exceptions import NewConnectionError
+from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 
 quantity = "40"
@@ -11,22 +14,26 @@ cardMonth = "08"
 cardYear = "2025"
 cardSecurityCode = "8636"
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
-
 
 # 9mm 115 Grain ammo
 def connect_to_website():
     while True:
         try:
+            driver = webdriver.Chrome(ChromeDriverManager().install())
             driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
-            #break
-            status = driver.find_element_by_class_name("availability.product-availability").text
-            check_status(status)
+            check_status()
+            break
         except (NoSuchElementException, NewConnectionError):
             time.sleep(10)
+        finally:
+            continue
+
+
+connect_to_website()
 
 
 def check_status():
+    status = driver.find_element_by_class_name("availability.product-availability").text
     if status == "Currently Unavailable":
         # print("Out of stock")
         time.sleep(5)
@@ -98,11 +105,11 @@ def begin_purchase():
             creditCardNumber = driver.find_element_by_class_name("form-control.cardNumber")
             creditCardNumber.send_keys(creditCard)
 
-            creditCardMonth = driver.find_element_by_id(cardMonth).click()
-            creditCardYear = driver.find_element_by_id(cardYear).click()
+            driver.find_element_by_id(cardMonth).click()
+            driver.find_element_by_id(cardYear).click()
 
             securityCode = driver.find_element_by_class_name("form-control.securityCode")
-            securityCode.send_keys("cardSecurityCode")
+            securityCode.send_keys(cardSecurityCode)
 
             reviewOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.submit-payment")
             reviewOrder.send_keys(Keys.RETURN)
@@ -110,7 +117,7 @@ def begin_purchase():
             time.sleep(1)
 
             # Clicking the age verification box
-            ageCheckBox = driver.find_element_by_xpath(
+            driver.find_element_by_xpath(
                 "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
 
             placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
