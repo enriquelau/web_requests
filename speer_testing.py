@@ -12,25 +12,29 @@ cardYear = "2025"
 cardSecurityCode = "8636"
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
-    # 9mm 115 Grain ammo
+
+
+# 9mm 115 Grain ammo
 def connect_to_website():
     while True:
         try:
-            reach = driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
-            break
-        except (NoSuchElementException,NewConnectionError):
+            driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
+            #break
+            status = driver.find_element_by_class_name("availability.product-availability").text
+            check_status(status)
+        except (NoSuchElementException, NewConnectionError):
             time.sleep(10)
-            continue
-    check_status()
+
 
 def check_status():
-        status = driver.find_element_by_class_name("availability.product-availability").text
-        if status == "Currently Unavailable":
-            # print("Out of stock")
-            time.sleep(5)
-            driver.refresh()
-        # If above statement is no longer true, execute the code below.
-        elif status == "Available":
+    if status == "Currently Unavailable":
+        # print("Out of stock")
+        time.sleep(5)
+        driver.refresh()
+    # If above statement is no longer true, execute the code below.
+    elif status == "Available":
+        begin_purchase()
+
 
 def begin_purchase():
     while True:
