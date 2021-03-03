@@ -3,9 +3,11 @@ import requests
 import time
 
 
+# The next assignment is to get the item into the cart.
 def purchase():
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/83.0.4103.116 Safari/537.36"}
     with requests.Session() as s:
         url = "https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html"
         r = s.get()
@@ -15,7 +17,8 @@ def purchase():
 
 def get_page_html(url):
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/83.0.4103.116 Safari/537.36"}
     page = requests.get(url, headers=headers)
     print(page.status_code)
     return page.content
@@ -46,6 +49,6 @@ def check_inventory():
 
 
 check_inventory()
-
+purchase()
 # next steps
 # create a session, send a post request, login to the website.
