@@ -12,22 +12,30 @@ cardYear = "2025"
 cardSecurityCode = "8636"
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
+    # 9mm 115 Grain ammo
+def connect_to_website():
+    while True:
+        try:
+            reach = driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
+            break
+        except (NoSuchElementException,NewConnectionError):
+            time.sleep(10)
+            continue
+    check_status()
 
-# 9mm 115 Grain ammo
-driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
+def check_status():
+        status = driver.find_element_by_class_name("availability.product-availability").text
+        if status == "Currently Unavailable":
+            # print("Out of stock")
+            time.sleep(5)
+            driver.refresh()
+        # If above statement is no longer true, execute the code below.
+        elif status == "Available":
 
-while True:
-
-    status = driver.find_element_by_class_name("availability.product-availability").text
-    if status == "Currently Unavailable":
-        # print("Out of stock")
-        time.sleep(5)
-        driver.refresh()
-    # If above statement is no longer true, execute the code below.
-    elif status == "Available":
-
+def begin_purchase():
+    while True:
         try:  # Declines tracking consent
-            declineTracking = driver.find_element_by_class_name("decline.btn.btn-primary").click()
+            driver.find_element_by_class_name("decline.btn.btn-primary").click()
 
             # Erasing the text field, replacing it with the desired quatity, and adding it to the shopping cart
             search = driver.find_element_by_class_name("form-control.quantity-select.quantity.quantity-input")
