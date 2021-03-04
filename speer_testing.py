@@ -1,10 +1,10 @@
 import time
-from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
 
 quantity = "40"
 userEmail = "enriquelau@protonmail.com"
@@ -16,23 +16,17 @@ cardSecurityCode = "8636"
 
 
 # 9mm 115 Grain ammo
-def connect_to_website():
+def connect_to_website(url):
     while True:
         try:
-            browser = webdriver.Chrome(ChromeDriverManager().install())
-            browser.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
-            break
+            connection = driver.get(url)
         except (NoSuchElementException, NewConnectionError):
-            time.sleep(10)
-            # finally:
-            #     time.sleep(10)
+            time.sleep(5)
             continue
+    return connection
 
 
-connect_to_website()
-
-
-def check_status():
+def check_status(connection):
     status = driver.find_element_by_class_name("availability.product-availability").text
     if status == "Currently Unavailable":
         # print("Out of stock")
@@ -40,13 +34,13 @@ def check_status():
         driver.refresh()
     # If above statement is no longer true, execute the code below.
     elif status == "Available":
-        begin_purchase()
-
-
-check_status()
+        return status
 
 
 def begin_purchase():
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
+    proceed = connect_to_website(url)
     while True:
         try:  # Declines tracking consent
             driver.find_element_by_class_name("decline.btn.btn-primary").click()
@@ -123,7 +117,10 @@ def begin_purchase():
             driver.find_element_by_xpath(
                 "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
 
-            placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
-            placeOrder.send_keys(Keys.RETURN)
+            # placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
+            # placeOrder.send_keys(Keys.RETURN)
         except Exception:
             continue
+
+
+begin_purchase()
