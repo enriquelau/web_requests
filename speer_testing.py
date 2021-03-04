@@ -19,13 +19,13 @@ cardSecurityCode = "8636"
 def connect_to_website():
     while True:
         try:
-            driver = webdriver.Chrome(ChromeDriverManager().install())
-            driver.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
-            check_status()
+            browser = webdriver.Chrome(ChromeDriverManager().install())
+            browser.get("https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html")
             break
         except (NoSuchElementException, NewConnectionError):
             time.sleep(10)
-        finally:
+            # finally:
+            #     time.sleep(10)
             continue
 
 
@@ -41,6 +41,9 @@ def check_status():
     # If above statement is no longer true, execute the code below.
     elif status == "Available":
         begin_purchase()
+
+
+check_status()
 
 
 def begin_purchase():
