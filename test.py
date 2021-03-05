@@ -7,8 +7,8 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 
-#url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
+url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
+#url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 quantity = "40"
@@ -32,8 +32,7 @@ def check_status(get_status):
             driver.refresh()
         elif status == "Available":
             # Code or function comes in here to proceed to checkout
-            return status
-
+            return
 
 def process_purchase():
     driver.find_element_by_class_name("decline.btn.btn-primary").click()
