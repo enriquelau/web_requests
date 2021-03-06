@@ -120,8 +120,8 @@ def process_purchase():
         driver.find_element_by_xpath(
             "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
 
-        # placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
-        # placeOrder.send_keys(Keys.RETURN)
+        placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
+        placeOrder.send_keys(Keys.RETURN)
 
     except NoSuchElementException:
         pass
