@@ -31,7 +31,7 @@ def check_status(get_status):
             driver.refresh()
         elif status == "Available":
             return
-
+        sleep(1)
 
 # ERR_NETWORK_CHANGED, add this to the try and catch statements
 
