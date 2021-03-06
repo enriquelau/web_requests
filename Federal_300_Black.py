@@ -128,12 +128,18 @@ def process_purchase():
 
 
 def get_url():
-    try:
-        driver.get(url)
-        get_status = driver.find_element_by_class_name("availability.product-availability").text
-        check_status(get_status)
-    except[NoSuchElementException, NewConnectionError, WebDriverException, ConnectionError]:
-        sleep(2)
+    tries = 0
+    while tries < 8:
+        try:
+            driver.get(url)
+            get_status = driver.find_element_by_class_name("availability.product-availability").text
+            check_status(get_status)
+            break
+        except[NoSuchElementException, NewConnectionError, WebDriverException, ConnectionError,
+               StaleElementReferenceException]:
+            sleep(1)
+            tries += 1
+            continue
     process_purchase()
 
 

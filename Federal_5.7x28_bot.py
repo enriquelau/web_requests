@@ -1,11 +1,11 @@
 import time
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
-
+# url = 'https://www.federalpremium.com/rifle/premium-centerfire-rifle/swift-scirocco-ii/11-P270WSMSS1.html'
 # url = 'https://www.federalpremium.com/rifle/american-eagle/american-eagle-rifle/11-AE300BLK1.html'
 # url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
 url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE5728A.html'
@@ -72,7 +72,7 @@ def process_purchase():
         # Will need to add a condition in case this path doesn't work try another
         applyState = driver.find_element_by_class_name("btn.btn-primary.btn-block.shipping-restrictions")
         applyState.send_keys(Keys.RETURN)
-        sleep(0.2)
+        sleep(0.4)
         driver.get(
             "https://www.federalpremium.com/on/demandware.store/Sites-VistaFederal-Site/default/Checkout-Login")
         # checkoutButton.send_keys(Keys.RETURN)
@@ -128,12 +128,18 @@ def process_purchase():
 
 
 def get_url():
-    try:
-        driver.get(url)
-        get_status = driver.find_element_by_class_name("availability.product-availability").text
-        check_status(get_status)
-    except[NoSuchElementException, NewConnectionError, WebDriverException, ConnectionError]:
-        sleep(2)
+    tries = 0
+    while tries < 8:
+        try:
+            driver.get(url)
+            get_status = driver.find_element_by_class_name("availability.product-availability").text
+            check_status(get_status)
+            break
+        except[NoSuchElementException, NewConnectionError, WebDriverException, ConnectionError,
+               StaleElementReferenceException]:
+            sleep(1)
+            tries += 1
+            continue
     process_purchase()
 
 
