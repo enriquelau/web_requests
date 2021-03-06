@@ -7,8 +7,8 @@ from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53620.html'
-# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
+url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
+# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
 driver = webdriver.Chrome(ChromeDriverManager().install())
 quantity = "40"
 userEmail = "enriquelau@protonmail.com"
@@ -138,3 +138,4 @@ def get_url():
 
 
 get_url()
+
