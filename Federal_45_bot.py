@@ -6,12 +6,11 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 
-# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
-#url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
-url = 'https://www.federalpremium.com/handgun/premium-handgun-hunting/swift-a-frame/11-P460SA.html'
+# url = 'https://www.federalpremium.com/rifle/american-eagle/american-eagle-rifle/11-AE300BLK1.html'
+url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
+# url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE5728A.html'
 driver = webdriver.Chrome(ChromeDriverManager().install())
-quantity = "1"
+quantity = "30"
 userEmail = "enriquelau@protonmail.com"
 password = "KqtLp2FW3xyFZme_gN_"
 creditCard = "372653830681009"
@@ -35,21 +34,19 @@ def check_status(get_status):
 
 
 def add_to_cart():
-
     attempts = 0
-    if attempts < 5:
+    for attempts in range(0, 6):
         try:
             adding_to_cart = driver.find_element_by_class_name("add-to-cart.btn.btn-primary")
             adding_to_cart.send_keys(Keys.RETURN)
+            break
         except NoSuchElementException:
-            print('No element found exception, re-attempting the process.')
+            print('No add to cart button found. Must be because the webpage has not completely loaded. Re-attempting '
+                  'the process for five tries:' + attempts)
             sleep(0.5)
             attempts += 1
-        finally:
-            get_url()
+    get_url()
 
-
-# ERR_NETWORK_CHANGED, add this to the try and catch statements
 
 def process_purchase():
     try:
@@ -70,13 +67,13 @@ def process_purchase():
         driver.get("https://www.federalpremium.com/cart")
         sleep(0.8)
         # Selects the State
-        selectState = driver.find_element_by_id("TX").click()
+        driver.find_element_by_id("TX").click()
         sleep(0.2)
         # Will need to add a condition in case this path doesn't work try another
         applyState = driver.find_element_by_class_name("btn.btn-primary.btn-block.shipping-restrictions")
         applyState.send_keys(Keys.RETURN)
         sleep(0.2)
-        checkoutButton = driver.get(
+        driver.get(
             "https://www.federalpremium.com/on/demandware.store/Sites-VistaFederal-Site/default/Checkout-Login")
         # checkoutButton.send_keys(Keys.RETURN)
 
@@ -123,8 +120,8 @@ def process_purchase():
         driver.find_element_by_xpath(
             "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
 
-        #placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
-        #placeOrder.send_keys(Keys.RETURN)
+        # placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
+        # placeOrder.send_keys(Keys.RETURN)
 
     except NoSuchElementException:
         pass
@@ -141,3 +138,4 @@ def get_url():
 
 
 get_url()
+
