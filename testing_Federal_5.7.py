@@ -5,12 +5,12 @@ from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
-# url = 'https://www.federalpremium.com/rifle/premium-centerfire-rifle/swift-scirocco-ii/11-P270WSMSS1.html'
+url = 'https://www.federalpremium.com/rifle/premium-centerfire-rifle/swift-scirocco-ii/11-P270WSMSS1.html'
 # url = 'https://www.federalpremium.com/rifle/american-eagle/american-eagle-rifle/11-AE300BLK1.html'
 # url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
-url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE5728A.html'
+# url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE5728A.html'
 driver = webdriver.Chrome(ChromeDriverManager().install())
-quantity = "40"
+quantity = "5"
 userEmail = "enriquelau@protonmail.com"
 password = "KqtLp2FW3xyFZme_gN_"
 creditCard = "372653830681009"
@@ -120,8 +120,8 @@ def process_purchase():
         driver.find_element_by_xpath(
             "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
 
-        placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
-        placeOrder.send_keys(Keys.RETURN)
+        # placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
+        # placeOrder.send_keys(Keys.RETURN)
 
     except NoSuchElementException:
         pass
