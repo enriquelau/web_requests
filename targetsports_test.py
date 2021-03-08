@@ -17,7 +17,7 @@ cardSecurityCode = "8636"
 
 #Test website
 blazer_brass_24 = driver.get("https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx")
-
+# blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
     #Trying to get the text that reads what is out of stock.
 
     # Need to add a while loop to check in stock
@@ -31,24 +31,22 @@ def check_status(get_status):
         if status == "OUT OF STOCK":
             sleep(5)
             driver.refresh()
-        elif status == "Available":
-            return
+        else:
+            process_purchase()
 
 def get_url():
     tries = 0
     while tries < 8:
         try:
             driver.get(blazer_brass_124)
-            sleep(0.5)
+            #sleep(0.5)
             get_status = driver.find_element_by_css_selector("#product > div.product-info > div.product-options > vinv.vinv_6632 > div > div.stock-info").text
             check_status(get_status)
             break
-         except[NoSuchElementException, NewConnectionError, WebDriverException, ConnectionError,
-               StaleElementReferenceException, Exception]:
+        except[NoSuchElementException,NewConnectionError,WebDriverException,ConnectionError,StaleElementReferenceException,Exception]:
             sleep(1)
             tries += 1
             continue
-    process_purchase()
 
 def process_purchase():
     while True:
