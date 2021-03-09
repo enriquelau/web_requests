@@ -1,4 +1,4 @@
-import from selenium import webdriver
+from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
