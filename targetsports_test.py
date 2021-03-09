@@ -16,7 +16,7 @@ cardYear = "2025"
 cardSecurityCode = "8636"
 
 #Test website
-blazer_brass_24 = driver.get("https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx")
+blazer_brass_124 = "https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx"
 # blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
     #Trying to get the text that reads what is out of stock.
 
@@ -31,8 +31,10 @@ def check_status(get_status):
         if status == "OUT OF STOCK":
             sleep(5)
             driver.refresh()
-        else:
-            process_purchase()
+        elif status == "AVAILABLE :":
+            print("line 35")
+            return
+
 
 def get_url():
     tries = 0
@@ -40,17 +42,19 @@ def get_url():
         try:
             driver.get(blazer_brass_124)
             #sleep(0.5)
-            get_status = driver.find_element_by_css_selector("#product > div.product-info > div.product-options > vinv.vinv_6632 > div > div.stock-info").text
+            get_status = driver.find_element_by_css_selector("#product > div.product-info > div.product-options > vinv.vinv_2628 > div > div.stock-info > span").text
             check_status(get_status)
             break
-        except[NoSuchElementException,NewConnectionError,WebDriverException,ConnectionError,StaleElementReferenceException,Exception]:
+        except Exception as e:#(NoSuchElementException,NewConnectionError,WebDriverException,ConnectionError,StaleElementReferenceException):
+            print(e)
             sleep(1)
             tries += 1
             continue
+    process_purchase()
+
 
 def process_purchase():
-    while True:
-
+    try:
         #Selects the 1000 round case option
         select = driver.find_element_by_xpath("/html/body/form/main/div/div[1]/div[1]/div[3]/div[2]/div[1]/select/option[3]").click()
 
@@ -87,5 +91,8 @@ def process_purchase():
         time.sleep(0.5)
         #Button to place an order
         #driver.find_element_by_class_name("button.call-to-action.checkoutprocess-placeorder").click()
+    except Exception as e:
+        print(e)
+        pass
 
 get_url()
