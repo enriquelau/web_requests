@@ -5,9 +5,10 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import sys
 
 # blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
-quantity = "1"
+quantity = "4"
 userEmail = "le1952@protonmail.com"
 userPass = "cZ2HyhARVft9h}Qt;$m"
 driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -31,21 +32,26 @@ def check_status(get_status):
             sleep(5)
             driver.refresh()
         elif status == "AVAILABLE :":
-            print("line 35")
+            print("Product Available, checking inventory:")
             return
 
+
 def inventory_check():
-    # Enters the quantity to purchase
-    search = driver.find_element_by_xpath(
+    driver.find_element_by_xpath(
+        "/html/body/form/main/div/div[1]/div[1]/div[3]/div[2]/div[1]/select/option[3]").click()
+    driver.find_element_by_xpath(
         "/html/body/form/main/div/div[1]/div[1]/div[3]/div[2]/vinv[2]/div/div[2]/div/span[1]/input[1]")
-    inventory = driver.find_element_by_css_selector("html body#product-page.master form#aspnetForm main div#ctl00_PageContent_pnlContent div div#product.product.common div.product-info div.product-options vinv.vinv_2629 div.product-stock div.stock-info")
-    print(inventory)
-    print(search)
-    search.send_keys(Keys.BACK_SPACE)
-    sleep(0.2)
-    search.send_keys(quantity)
-    search.send_keys(Keys.RETURN)
-    return
+    inventory = driver.find_element_by_css_selector(
+        "html body#product-page.master form#aspnetForm main div#ctl00_PageContent_pnlContent div "
+        "div#product.product.common div.product-info div.product-options vinv.vinv_2629 div.product-stock "
+        "div.stock-info").text
+    stock = int(inventory[12] + inventory[13])
+    if stock > 15:
+        print("Checking out")
+    elif stock < 15:
+        sys.exit("Insufficient stock")
+        return
+
 
 
 def get_url():
@@ -66,7 +72,6 @@ def get_url():
     process_purchase()
 
 
-
 def process_purchase():
     try:
         # Selects the 1000 round case option
@@ -75,7 +80,7 @@ def process_purchase():
 
         sleep(0.5)
 
-        # Enters the quantity to purchase
+        # Calling inventory check to asses stock level to proceed. 
 
         inventory_check()
 
@@ -114,7 +119,6 @@ def process_purchase():
         # driver.find_element_by_class_name("button.call-to-action.checkoutprocess-placeorder").click()
     except Exception as e:
         print(e)
-        pass
-
+        continue
 
 get_url()
