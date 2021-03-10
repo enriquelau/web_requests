@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
+from random import randint
 import time
 import sys
 
@@ -16,11 +17,6 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 # Test website
 blazer_brass_124 = "https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx"
 
-
-# blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
-# Trying to get the text that reads what is out of stock.
-
-# Need to add a while loop to check in stock
 def sleep(secs):
     time.sleep(secs)
 
@@ -29,11 +25,11 @@ def check_status(get_status):
     status: object = get_status
     while True:
         if status == "OUT OF STOCK":
-            sleep(5)
+            sleep(randint(5,15))
             driver.refresh()
         elif status == "AVAILABLE :":
-            print("Product Available, checking inventory:")
-            return
+            print("Product Available, checking inventory levels:")
+            continue
 
 
 def inventory_check():
@@ -61,12 +57,13 @@ def get_url():
             driver.get(blazer_brass_124)
             # sleep(0.5)
             get_status = driver.find_element_by_css_selector(
-                "#product > div.product-info > div.product-options > vinv.vinv_2628 > div > div.stock-info > span").text
+                "#product > div.product-info > div.product-options > vinv.vinv_6632 > div > div.stock-info").text
+            print(get_status)
             check_status(get_status)
             break
         except Exception as e:  # (NoSuchElementException,NewConnectionError,WebDriverException,ConnectionError,StaleElementReferenceException):
             print(e)
-            sleep(1)
+            sleep(4)
             tries += 1
             continue
     process_purchase()
@@ -119,6 +116,6 @@ def process_purchase():
         # driver.find_element_by_class_name("button.call-to-action.checkoutprocess-placeorder").click()
     except Exception as e:
         print(e)
-        continue
+        return
 
 get_url()
