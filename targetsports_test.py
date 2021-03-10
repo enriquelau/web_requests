@@ -28,6 +28,8 @@ def check_status(get_status):
             sleep(randint(5,15))
             driver.refresh()
         elif status == "AVAILABLE :":
+            # Here is where some logic will need to be added
+            # to pause the VPN change service
             print("Product Available, checking inventory levels:")
             continue
 
