@@ -9,13 +9,14 @@ from selenium.webdriver.chrome.options import Options
 
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53620.html'
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
+# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
+url ='https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
 
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-quantity = "40"
+quantity = "1"
 userEmail = "enriquelau@protonmail.com"
 password = "b%f)itq+wTZNRZN6=DT)zA:F"
 creditCard = "372653830681009"
@@ -122,7 +123,7 @@ def process_purchase():
         reviewOrder.send_keys(Keys.RETURN)
 
         sleep(1)
-
+        print('Works')
         # Clicking the age verification box
         driver.find_element_by_xpath(
             "/html/body/div[2]/div[1]/div[4]/div[1]/div[6]/div[3]/div/label").click()
