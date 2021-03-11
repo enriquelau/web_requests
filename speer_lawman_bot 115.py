@@ -5,11 +5,16 @@ from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53620.html'
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
 url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
-driver = webdriver.Chrome(ChromeDriverManager().install())
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 quantity = "40"
 userEmail = "enriquelau@protonmail.com"
 password = "b%f)itq+wTZNRZN6=DT)zA:F"
@@ -24,12 +29,14 @@ def sleep(secs):
 
 
 def check_status(get_status):
-    status: object = get_status
+    status = get_status
     while True:
         if status == "Currently Unavailable":
+            # print('Not in stock')
             sleep(5)
             driver.refresh()
         elif status == "Available":
+            print('Available, proceeding to checkout')
             return
 
 
@@ -122,7 +129,7 @@ def process_purchase():
 
         placeOrder = driver.find_element_by_class_name("btn.btn-primary.btn-block.place-order")
         placeOrder.send_keys(Keys.RETURN)
-
+        print('Order successfully placed, check email for confirmation')
     except NoSuchElementException:
         pass
 
