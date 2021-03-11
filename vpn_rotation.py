@@ -2,19 +2,25 @@ import subprocess
 import csv
 import pandas as pd
 
-filename = "vpn_server_names.csv"
+filename = "proton_server_names.csv"
 
 fields = []
 rows = []
 
 with open(filename, 'r') as csvfile:
-    csvreader = csv.reader(csvfile)
-    fields = next(csvreader)
+    csvreader = [row for row in csv.reader(csvfile)]
+    # fields = next(csvreader)
+    print(csvreader[0][0])
 
+for cell in csvreader:
+
+
+
+    '''
     for row in csvreader:
         rows.append(row)
         print(row[1])
-
+'''
 
 '''
 with open("vpn_server_names.csv", delimiter= ',') as csvfile:
