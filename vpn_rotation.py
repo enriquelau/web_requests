@@ -1,12 +1,18 @@
 import csv, time, subprocess, atexit, sys, os
 
+
+profile_folder = "/Users/enriquelau/Desktop/Proton\ Profiles"
+
 def closeConnection():
 	subprocess.call(["sudo", "killall openvpn"])
-	
+
+#The next step is to have the argument open the file path in which the profiles are in. 
 def openConnection(argument):
-	subprocess.call(["sudo", "openvpn", "argument"])
+        
+	subprocess.call(["openvpn", argument])
 
 if __name__ == "__main__":
+
 
 	filePath = os.path.join(sys.path[0], 'proton_server_names.csv')
 	atexit.register(closeConnection)
@@ -21,13 +27,14 @@ if __name__ == "__main__":
 	
 	else:
 		timeToSleep = 60*7
-	
+
 	while True:
 	
-		openConnection(argList[i])
+		openConnection(argList[i][0])
+                # print(argList[i][0])
 		i += 1
 		if i == len(argList):
 			i = 0
 		time.sleep(timeToSleep)
-		closeConnection()
+                closeConnection()
 
