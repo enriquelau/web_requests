@@ -1,56 +1,33 @@
-import subprocess
-import csv
-import pandas as pd
+import csv, time, subprocess, atexit, sys, os
 
-filename = "proton_server_names.csv"
+def closeConnection():
+	subprocess.call(["sudo", "killall openvpn"])
+	
+def openConnection(argument):
+	subprocess.call(["sudo", "openvpn", "argument"])
 
-fields = []
-rows = []
+if __name__ == "__main__":
 
-with open(filename, 'r') as csvfile:
-    csvreader = [row for row in csv.reader(csvfile)]
-    # fields = next(csvreader)
-    print(csvreader[0][0])
+	filePath = os.path.join(sys.path[0], 'proton_server_names.csv')
+	atexit.register(closeConnection)
+	with open(filePath) as csv_file:
+		csv_reader = csv.reader(csv_file, delimiter=',')
+		argList = list(csv_reader)
+	i = 0	
+	
+	if len(sys.argv) > 1:
+		if sys.argv[1].isnumeric():
+			timeToSleep = 60*int(sys.argv[1])
+	
+	else:
+		timeToSleep = 60*7
+	
+	while True:
+	
+		openConnection(argList[i])
+		i += 1
+		if i == len(argList):
+			i = 0
+		time.sleep(timeToSleep)
+		closeConnection()
 
-for cell in csvreader:
-
-
-
-    '''
-    for row in csvreader:
-        rows.append(row)
-        print(row[1])
-'''
-
-'''
-with open("vpn_server_names.csv", delimiter= ',') as csvfile:
-    reader = csv.reader(csvfile, quoting=csv.QUOTE_ALL)
-    for row in reader:
-        array.append(row)
-        print(array[1]) 
-'''
-
-
-
-'''
-df = pd.read_csv(r'~/web_requests/vpn_server_names.csv')
-
-print(df)
-
-with open ('vpn_server_names.txt') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    print(csv_reader)
-
-
-
-profiles = 
-for i in profiles:
-
-
-subprocess.call(['ls','-l'], shell=True)
-sudo openvpn us.protonvpn.com.udp.ovpn
-
-The above command is how to use openvpn to connect to a 
-vpn server
-
-'''
