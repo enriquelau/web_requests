@@ -5,14 +5,15 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
+from decouple import config
 
 quantity = "40"
-userEmail = "enriquelau@protonmail.com"
-password = "b%f)itq+wTZNRZN6=DT)zA:F"
-creditCard = "372653830681009"
-cardMonth = "08"
-cardYear = "2025"
-cardSecurityCode = "8636"
+userEmail = config('userEmail')
+password = config('password')
+creditCard = config('creditCard')
+cardMonth = config('cardMonth')
+cardYear = config('cardYear')
+cardSecurityCode = config('cardSecurityCode')
 
 
 # 9mm 115 Grain ammo
