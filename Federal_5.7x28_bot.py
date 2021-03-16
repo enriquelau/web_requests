@@ -16,9 +16,9 @@ options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu') 
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-quantity = "40"
-userEmail = config('userEmail')
-password = config('password')
+quantity = "1"
+userEmail = config('federalUserEmail')
+password = config('federalPassword')
 creditCard = config('creditCard')
 cardMonth = config('cardMonth')
 cardYear = config('cardYear')

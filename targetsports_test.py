@@ -7,11 +7,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 from random import randint
 import time
 import sys
+from decouple import config
 
 # blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
 quantity = "4"
-userEmail = "le1952@protonmail.com"
-userPass = "cZ2HyhARVft9h}Qt;$m"
+userEmail = config('targetUserEmail')
+userPass = config('targetPassword')
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 # Test website

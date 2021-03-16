@@ -16,8 +16,8 @@ options.add_argument('--headless')
 options.add_argument('--disable-gpu') 
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 quantity = "50"
-userEmail = config('userEmail')
-password = config('password')
+federalUserEmail = config('federalUserEmail')
+federalPassword = config('federalPassword')
 creditCard = config('creditCard')
 cardMonth = config('cardMonth')
 cardYear = config('cardYear')
@@ -87,9 +87,9 @@ def process_purchase():
 
         # Login as a returning customer
         emailLogin = driver.find_element_by_id("login-form-email")
-        emailLogin.send_keys(userEmail)
+        emailLogin.send_keys(federalUserEmail)
         passwordLogin = driver.find_element_by_id("login-form-password")
-        passwordLogin.send_keys(password)
+        passwordLogin.send_keys(federalPassword)
 
         sleep(0.4)
 
