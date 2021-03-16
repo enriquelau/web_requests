@@ -6,6 +6,7 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+from decouple import config
 
 url = 'https://www.federalpremium.com/rifle/american-eagle/american-eagle-rifle/11-AE300BLK1.html'
 # url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
@@ -15,12 +16,12 @@ options.add_argument('--headless')
 options.add_argument('--disable-gpu') 
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 quantity = "50"
-userEmail = "enriquelau@protonmail.com"
-password = "KqtLp2FW3xyFZme_gN_"
-creditCard = "372653830681009"
-cardMonth = "08"
-cardYear = "2025"
-cardSecurityCode = "8636"
+userEmail = config('userEmail')
+password = config('password')
+creditCard = config('creditCard')
+cardMonth = config('cardMonth')
+cardYear = config('cardYear')
+cardSecurityCode = config('cardSecurityCode')
 
 
 def sleep(secs):
