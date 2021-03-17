@@ -71,6 +71,7 @@ def process_purchase():
         # Pressing the Add to Cart Button
         add_to_cart()
 
+        print('Going to cart')
         # Takes you to the shopping cart for checkout
         driver.get("https://www.speer.com/cart")
         sleep(0.8)
