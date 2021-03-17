@@ -72,6 +72,7 @@ def process_purchase():
         add_to_cart()
 
         # Takes you to the shopping cart for checkout
+        print('Going to shopping cart')
         driver.get("https://www.speer.com/cart")
         sleep(0.8)
         # Selects the State
