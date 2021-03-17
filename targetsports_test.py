@@ -9,21 +9,21 @@ import time
 import sys
 from decouple import config
 
-# blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
+blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
 quantity = "4"
 userEmail = config('targetUserEmail')
 userPass = config('targetPassword')
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 # Test website
-blazer_brass_124 = "https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx"
+# blazer_brass_124 = "https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx"
 
 def sleep(secs):
     time.sleep(secs)
 
 
 def check_status(get_status):
-    status: object = get_status
+    status = get_status
     while True:
         if status == "OUT OF STOCK":
             sleep(randint(5,15))
