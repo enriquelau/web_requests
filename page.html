@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--[if gt IE 9]><!-->
+<script>//common/scripts.isml</script>
+<script defer type="text/javascript" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/js/main.js"></script>
+
+
+<script defer type="text/javascript" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/lib/jquery.zoom.min.js"></script>
+
+
+
+
+
+
+
+<!--<![endif]-->
+<meta charset=UTF-8>
+
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <title>Sites-VistaSpeer-Site</title>
+
+
+<meta name="description" content="Speer Ammo"/>
+<meta name="keywords" content="Speer Ammo"/>
+
+
+
+
+
+
+<link rel="icon" type="image" href="/on/demandware.static/Sites-VistaSpeer-Site/-/default/dw205b100a/images/favicons/favicon.ico" alt="Vista Federal Ammo"/>
+
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,600,700" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600" rel="stylesheet"/>
+<link rel="stylesheet" href="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/css/global.css" />
+
+
+
+
+
+<!--  BM Stylesheet -->
+
+
+
+
+
+
+
+
+
+
+    <wainclude url="/on/demandware.store/Sites-VistaSpeer-Site/default/Signifyd-IncludeFingerprint">
+
+<wainclude url="/on/demandware.store/Sites-VistaSpeer-Site/default/GTM-HtmlHead?action=Product-Inventory&sitedata=%7b%22event%22%3a%22site%22%2c%22site%22%3a%7b%22ID%22%3a%22VistaSpeer%22%2c%22brandID%22%3a%22federal%22%2c%22themeID%22%3a%22%22%2c%22locale%22%3a%22en_US%22%2c%22language%22%3a%22en%22%2c%22currency%22%3a%22USD%22%2c%22environment%22%3a%22production%22%7d%7d&datalayer=null"><wainclude url="/on/demandware.store/Sites-VistaSpeer-Site/default/HandlerInclude-CachedHook?hookID=app%2etracking%2ecachedTrackingLink">
+
+<script type="text/javascript">//<!--
+/* <![CDATA[ (head-active_data.js) */
+var dw = (window.dw || {});
+dw.ac = {
+    _analytics: null,
+    _events: [],
+    _category: "",
+    _searchData: "",
+    _anact: "",
+    _anact_nohit_tag: "",
+    _capture: function(configs) {
+        if (Object.prototype.toString.call(configs) === "[object Array]") {
+            configs.forEach(captureObject);
+            return;
+        }
+        dw.ac._events.push(configs);
+    },
+	capture: function() { 
+		dw.ac._capture(arguments);
+		// send to CQ as well:
+		if (window.CQuotient) {
+			window.CQuotient.trackEventsFromAC(arguments);
+		}
+	},
+    EV_PRD_SEARCHHIT: "searchhit",
+    EV_PRD_DETAIL: "detail",
+    EV_PRD_RECOMMENDATION: "recommendation",
+    EV_PRD_SETPRODUCT: "setproduct",
+    applyContext: function(context) {
+        if (typeof context === "object" && context.hasOwnProperty("category")) {
+        	dw.ac._category = context.category;
+        }
+        if (typeof context === "object" && context.hasOwnProperty("searchData")) {
+        	dw.ac._searchData = context.searchData;
+        }
+    },
+    setDWAnalytics: function(analytics) {
+        dw.ac._analytics = analytics;
+    }
+};
+/* ]]> */
+// -->
+</script><script type="text/javascript">//<!--
+/* <![CDATA[ (head-cquotient.js) */
+var CQuotient = window.CQuotient = {};
+CQuotient.clientId = 'bdbj-VistaSpeer';
+CQuotient.realm = 'BDBJ';
+CQuotient.siteId = 'VistaSpeer';
+CQuotient.instanceType = 'prd';
+CQuotient.locale = 'default';
+CQuotient.activities = [];
+CQuotient.cqcid='';
+CQuotient.cquid='';
+CQuotient.cqeid='';
+CQuotient.cqlid='';
+CQuotient.initFromCookies = function () {
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+	  var c = ca[i];
+	  while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	  if (c.indexOf('cqcid=') == 0) {
+		CQuotient.cqcid=c.substring('cqcid='.length,c.length);
+	  } else if (c.indexOf('cquid=') == 0) {
+		  var value = c.substring('cquid='.length,c.length);
+		  if (value) {
+		  	var split_value = value.split("|", 3);
+		  	if (split_value.length > 0) {
+			  CQuotient.cquid=split_value[0];
+		  	}
+		  	if (split_value.length > 1) {
+			  CQuotient.cqeid=split_value[1];
+		  	}
+		  	if (split_value.length > 2) {
+			  CQuotient.cqlid=split_value[2];
+		  	}
+		  }
+	  }
+	}
+}
+CQuotient.getCQCookieId = function () {
+	if(window.CQuotient.cqcid == '')
+		window.CQuotient.initFromCookies();
+	return window.CQuotient.cqcid;
+};
+CQuotient.getCQUserId = function () {
+	if(window.CQuotient.cquid == '')
+		window.CQuotient.initFromCookies();
+	return window.CQuotient.cquid;
+};
+CQuotient.getCQHashedEmail = function () {
+	if(window.CQuotient.cqeid == '')
+		window.CQuotient.initFromCookies();
+	return window.CQuotient.cqeid;
+};
+CQuotient.getCQHashedLogin = function () {
+	if(window.CQuotient.cqlid == '')
+		window.CQuotient.initFromCookies();
+	return window.CQuotient.cqlid;
+};
+CQuotient.trackEventsFromAC = function (/* Object or Array */ events) {
+try {
+	if (Object.prototype.toString.call(events) === "[object Array]") {
+		events.forEach(_trackASingleCQEvent);
+	} else {
+		CQuotient._trackASingleCQEvent(events);
+	}
+} catch(err) {}
+};
+CQuotient._trackASingleCQEvent = function ( /* Object */ event) {
+	if (event && event.id) {
+		if (event.type === dw.ac.EV_PRD_DETAIL) {
+			CQuotient.trackViewProduct( {id:'', alt_id: event.id, type: 'raw_sku'} );
+		} // not handling the other dw.ac.* events currently
+	}
+};
+CQuotient.trackViewProduct = function(/* Object */ cqParamData){
+	var cq_params = {};
+	cq_params.cookieId = CQuotient.getCQCookieId();
+	cq_params.userId = CQuotient.getCQUserId();
+	cq_params.emailId = CQuotient.getCQHashedEmail();
+	cq_params.loginId = CQuotient.getCQHashedLogin();
+	cq_params.product = cqParamData.product;
+	cq_params.realm = cqParamData.realm;
+	cq_params.siteId = cqParamData.siteId;
+	cq_params.instanceType = cqParamData.instanceType;
+	cq_params.locale = CQuotient.locale;
+	
+	if(CQuotient.sendActivity) {
+		CQuotient.sendActivity(CQuotient.clientId, 'viewProduct', cq_params);
+	} else {
+		CQuotient.activities.push({activityType: 'viewProduct', parameters: cq_params});
+	}
+};
+/* ]]> */
+// -->
+</script>
+
+</head>
+<body>
+<div class="page">
+
+<header>
+    <a href="#maincontent" class="skip" aria-label="Skip to main content">Skip to main content</a>
+<a href="#footercontent" class="skip" aria-label="Skip to footer content">Skip to footer content</a>
+    
+    
+    <nav aria-labelledby="nav-title">
+        <h2 id="nav-title" class="sr-only">navigation</h2>
+        <div class="header-wrapper">
+            <div class="header no-menu-header container">
+                <div class="col-12">
+                    <div class="navbar-header brand row">
+                        <a class="logo-home" href="/home" title="Speer Ammo Home">
+                            <img class="hidden-md-down" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/dwa38d6ca6/images/svg-icons/icon-logo-desktop.svg" alt="Speer Ammo" />
+                            <img class="d-lg-none hidden-sm-down" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/dwad5c15ed/images/svg-icons/icon-logo-tablet.svg" alt="Speer Ammo" />
+                            <img class="d-md-none" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/dwfae2a611/images/svg-icons/icon-logo-mobile.svg" alt="Speer Ammo" />
+                        </a>
+                    </div>
+                    
+                        <div class="float-lg-right">
+                            <div class="search hidden-md-down">
+                                <div class="site-search" role="search" name="simpleSearch" aria-labelledby="search-title">
+       <h2 id="search-title" class='sr-only'>Search suggestions</h2>
+	<form 
+          action="/search"
+          method="get"
+          role="combobox"
+          aria-describedby="search-assistive-text"
+          aria-haspopup="listbox"
+          aria-owns="search-results"
+          aria-expanded="false"
+          aria-autocomplete="list"
+          aria-activedescendant=""
+          aria-controls="search-results"
+          aria-label="Enter Keyword or Item No."
+       >
+        <input class="form-control search-field"
+               type="search"
+               name="q"
+               value=""
+               placeholder="Search"
+               role="textbox"
+                />
+        <button type="submit" name="search-button" class="search" aria-label="Submit search keywords"></button>
+        <div class="suggestions-wrapper" data-url="/on/demandware.store/Sites-VistaSpeer-Site/default/SearchServices-GetSuggestions?q="></div>
+        <input type="hidden" value="default" name="lang">
+	</form>
+</div>
+
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="main-menu no-menu">
+                <div class="container fill-height">
+                    <div class="justify-content-center fill-height continue-shopping-wrapper">
+                        <a href="/home" class="continue-shopping nav-link">Continue shopping.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <div class="container">
+                <div class="search-mobile d-lg-none">
+                    <div class="site-search" role="search" name="simpleSearch" aria-labelledby="search-title">
+       <h2 id="search-title" class='sr-only'>Search suggestions</h2>
+	<form 
+          action="/search"
+          method="get"
+          role="combobox"
+          aria-describedby="search-assistive-text"
+          aria-haspopup="listbox"
+          aria-owns="search-results"
+          aria-expanded="false"
+          aria-autocomplete="list"
+          aria-activedescendant=""
+          aria-controls="search-results"
+          aria-label="Enter Keyword or Item No."
+       >
+        <input class="form-control search-field"
+               type="search"
+               name="q"
+               value=""
+               placeholder="Search"
+               role="textbox"
+                />
+        <button type="submit" name="search-button" class="search" aria-label="Submit search keywords"></button>
+        <div class="suggestions-wrapper" data-url="/on/demandware.store/Sites-VistaSpeer-Site/default/SearchServices-GetSuggestions?q="></div>
+        <input type="hidden" value="default" name="lang">
+	</form>
+</div>
+
+                </div>
+            </div>
+        
+    </nav>
+</header>
+
+
+
+    <div class="hero slant-down error-hero">
+        <h1 class="page-title">Sorry, page not found</h1>
+    </div>
+
+    <div class="container error-page">
+        <h4 class='text-center error-message'>We couldn't find what you were looking for. You can try a search or visit the <a href="/">homepage.</a></h4>
+        
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <a href="/home" class="btn btn-primary btn-block error continue-shopping" role="button" aria-pressed="true">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--[if lt IE 10]>
+<script>//common/scripts.isml</script>
+<script defer type="text/javascript" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/js/main.js"></script>
+
+
+<script defer type="text/javascript" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/lib/jquery.zoom.min.js"></script>
+
+
+
+
+
+
+
+<![endif]-->
+<wainclude url="/on/demandware.store/Sites-VistaSpeer-Site/default/ConsentTracking-Check">
+<!-- Demandware Analytics code 1.0 (body_end-analytics-tracking-asynch.js) -->
+<script type="text/javascript">//<!--
+/* <![CDATA[ */
+function trackPage() {
+    try{
+        var trackingUrl = "https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/__Analytics-Start";
+        var dwAnalytics = dw.__dwAnalytics.getTracker(trackingUrl);
+        if (typeof dw.ac == "undefined") {
+            dwAnalytics.trackPageView();
+        } else {
+            dw.ac.setDWAnalytics(dwAnalytics);
+        }
+    }catch(err) {};
+}
+/* ]]> */
+// -->
+</script>
+<script type="text/javascript" src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/internal/jscript/dwanalytics-20.5.1.js" async="async" onload="trackPage()"></script>
+<!-- Demandware Active Data (body_end-active_data.js) -->
+<script src="/on/demandware.static/Sites-VistaSpeer-Site/-/default/v1616187610347/internal/jscript/dwac-20.3.js" type="text/javascript" async="async"></script><!-- CQuotient Activity Tracking (body_end-cquotient.js) -->
+<script src="https://cdn.cquotient.com/js/v2/gretel.min.js" type="text/javascript" async="async"></script>
+</body>
+</html>
