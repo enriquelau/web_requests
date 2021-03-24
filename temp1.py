@@ -16,7 +16,10 @@ Possibly print out or screenshot the contents, to verify.
 This is only for testing. 
 
 '''
+checkState = ''
+
 print(add_to_cart.content)
+
 
 
 
