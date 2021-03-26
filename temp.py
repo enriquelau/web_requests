@@ -7,7 +7,7 @@ url = 'https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/C
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/83.0.4103.116 Safari/537.36"}
-payload = {"pid":"19-53919","quantity":"1"}
+payload = {"pid":"19-53919","quantity":"3","stateCode":"TX"}
 add_to_cart = requests.post(url,headers=headers,data=payload)
 
 # Will need to add ship to state
