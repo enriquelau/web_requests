@@ -5,20 +5,21 @@ from selenium.webdriver.common.keys import Keys
 from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
 from decouple import config
 
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53620.html'
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
+url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
 #Below is the .357 Sig ammo that is almost always available
-url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
+# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
 
-options = Options()
-options.add_argument('--headless')
-options.add_argument('--disable-gpu')
-driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-quantity = "40"
+#options = Options()
+#options.add_argument('--headless')
+#options.add_argument('--disable-gpu')
+# driver = webdriver.Chrome(ChromeDriverManager().install(), options=options) *****
+driver = webdriver.Chrome(ChromeDriverManager().install())
+quantity = "2"
 userEmail = config('speerUserEmail')
 password = config('speerPassword')
 creditCard = config('testC')
@@ -36,10 +37,11 @@ def check_status(get_status):
     while True:
         if status == "Currently Unavailable":
             # print('Not in stock')
-            sleep(5)
+            sleep(4)
+            driver.delete_all_cookies()
+            sleep(1)
             driver.refresh()
         elif status == "Available":
-            driver.delete_all_cookies()
             print('Available, proceeding to checkout')
             return
 
