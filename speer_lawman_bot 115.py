@@ -37,7 +37,6 @@ def check_status(get_status):
             sleep(5)
             driver.refresh()
         elif status == "Available":
-            driver.delete_all_cookies()
             print('Available, proceeding to checkout')
             return
 
