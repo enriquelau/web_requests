@@ -12,6 +12,7 @@ add_to_cart = requests.post(url,headers=headers,data=payload)
 
 # Will need to add ship to state
 
+
 # Login for checkout
 
 
@@ -23,7 +24,7 @@ Possibly print out or screenshot the contents, to verify.
 This is only for testing. 
 
 '''
-checkState = ''
+# checkState = ''
 
 print(add_to_cart.content)
 
