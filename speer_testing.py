@@ -19,13 +19,13 @@ url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650
 #options.add_argument('--disable-gpu')
 # driver = webdriver.Chrome(ChromeDriverManager().install(), options=options) *****
 driver = webdriver.Chrome(ChromeDriverManager().install())
-quantity = "2"
+quantity = "40"
 userEmail = config('speerUserEmail')
 password = config('speerPassword')
-creditCard = config('testC')
-cardMonth = config('testMonth')
-cardYear = config('testYear')
-cardSecurityCode = config('testCode')
+creditCard = config('creditCard')
+cardMonth = config('cardMonth')
+cardYear = config('cardYear')
+cardSecurityCode = config('cardSecurityCode')
 
 
 def sleep(secs):

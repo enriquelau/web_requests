@@ -82,7 +82,7 @@ def process_purchase():
         sleep(0.2)
         driver.get(
             "https://www.federalpremium.com/on/demandware.store/Sites-VistaFederal-Site/default/Checkout-Login")
-        # checkoutButton.send_keys(Keys.RETURN)
+        checkoutButton.send_keys(Keys.RETURN)
 
         sleep(0.4)
 

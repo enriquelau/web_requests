@@ -9,29 +9,37 @@ Today's lesson:
    that will obtain it and keep it alive for the checkout process. 
 
 '''
-url = 'https://www.speer.com/bullets/handgun_bullets/gold_dot_handgun_component_bullet/19-3985.html'
-session = requests.Session()
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/83.0.4103.116 Safari/537.36"}
 
+url = 'https://www.speer.com/bullets/handgun_bullets/gold_dot_handgun_component_bullet/19-3985.html'
+session = requests.Session()
+persistance = session.get(url)
+# Here is where bs will need to parse csrf cookie variable
+
+soup = bs(url, 'html.parser')
+
+# print(soup)
+print(persistance.text)
 
 # This will be the function that will save initial cookie, possibly?
 # May need another one for the csrf cookie session. 
+'''
 def initiate():
-    global session
+    global persistance
     response = session.get(url)
     print(response.text)
 
 
 def add_to_cart():
+    global persistance
     return
-    #global session 
     #adding to cart with the below post request
     #payload = {"pid":"19-53919","quantity":"3"}
     #requests.post(url,headers=headers,data=payload)
     #print(initiate(response))
-
+'''
 '''
 soup = bs(response.text,"html.parser")
 r = requests.get("https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/Cart-CheckShippingRestrictions?stateCode=TX")
@@ -52,4 +60,4 @@ This is only for testing.
 
 
 #def add_to_cart():
-initiate() 
+#initiate() 
