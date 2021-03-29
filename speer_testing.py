@@ -34,6 +34,7 @@ def sleep(secs):
 
 def headers():
     header = RandomHeaders.LoadHeader() 
+    return header
 
 
 def check_status(get_status):
@@ -44,6 +45,8 @@ def check_status(get_status):
             sleep(4)
             driver.delete_all_cookies()
             sleep(1)
+            # Changing the headers each time the page refreshes
+            headers()
             driver.refresh()
         elif status == "Available":
             print('Available, proceeding to checkout')
@@ -149,8 +152,6 @@ def get_url():
     tries = 0
     while tries < 8:
         try:
-            headers()
-            print(headers())
             driver.get(url)
             get_status = driver.find_element_by_class_name("availability.product-availability").text
             check_status(get_status)
