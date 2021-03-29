@@ -3,10 +3,15 @@ import requests
 import time
 
 
+
+url = "https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html"
+
 def add_to_cart():
+    # adding to cart with the below post request
+    payload = {"pid":"19-53919","quantity":"3"}
+    requests.post(url,headers=headers,data=payload)
     return
 
-# # The next assignment is to get the item into the cart.
 # def purchase():
 #     headers = {
 #         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -15,7 +20,6 @@ def add_to_cart():
 #         url = "https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html"
 #         r = s.get()
 #     return
-
 
 def get_page_html(url):
     headers = {
@@ -38,12 +42,12 @@ def check_inventory():
         # url = "https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE9AP.html"
         # url = "https://www.federalpremium.com/handgun/premium-handgun-hunting/swift-a-frame/11-P500SA.html"
         # url = "https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html"
-        url = "https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html"
         page_html = get_page_html(url)
         # The conditional below is checking to see if the string
         # "Currently Unavailable" exists in the html that was parsed with the check_item_in_stock method"
         if "Available" in check_item_in_stock(page_html):
             print("In Stock")
+            add_to_cart()
             time.sleep(5)
         else:
             print("OOS")
