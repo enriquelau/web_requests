@@ -1,5 +1,6 @@
 import time
 import RandomHeaders
+import requests
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
@@ -18,8 +19,11 @@ url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650
 #options = Options()
 #options.add_argument('--headless')
 #options.add_argument('--disable-gpu')
-# driver = webdriver.Chrome(ChromeDriverManager().install(), options=options) *****
-driver = webdriver.Chrome(ChromeDriverManager().install())
+options = webdriver.ChromeOptions()
+PROXY = "107.150.42.74:17003"
+options.add_argument('--proxy-server=https://%s' % PROXY)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+#driver = webdriver.Chrome(ChromeDriverManager().install())
 quantity = "40"
 userEmail = config('speerUserEmail')
 password = config('speerPassword')
