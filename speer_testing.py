@@ -1,4 +1,5 @@
 import time
+import RandomHeaders
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
@@ -30,6 +31,9 @@ cardSecurityCode = config('cardSecurityCode')
 
 def sleep(secs):
     time.sleep(secs)
+
+def headers():
+    header = RandomHeaders.LoadHeader() 
 
 
 def check_status(get_status):
@@ -145,6 +149,8 @@ def get_url():
     tries = 0
     while tries < 8:
         try:
+            headers()
+            print(headers())
             driver.get(url)
             get_status = driver.find_element_by_class_name("availability.product-availability").text
             check_status(get_status)
