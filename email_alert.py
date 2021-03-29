@@ -15,6 +15,7 @@ def email_alert(subject, body, to):
     server.starttls()
     server.login(user, password)
     server.send_message(msg)
-
-if __name__ == '__main__':
-    email_alert("Price Change", "https://ammoseek.com/ammo/9mm-luger", "contact@countyarmament.com")
+    
+    return
+# if __name__ == '__main__':
+  #  email_alert("Price Change", "https://ammoseek.com/ammo/9mm-luger", "contact@countyarmament.com")
