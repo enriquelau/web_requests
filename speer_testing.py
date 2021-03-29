@@ -11,11 +11,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from decouple import config
 
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53620.html'
-# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
-url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
+url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53651.html'
+# url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53650.html'
 #Below is the .357 Sig ammo that is almost always available
 # url = 'https://www.speer.com/ammunition/handgun/lawman_handgun_training/19-53919.html'
-
 #options = Options()
 #options.add_argument('--headless')
 #options.add_argument('--disable-gpu')
