@@ -11,7 +11,8 @@ def headers():
 
 def get_page_url(URL):
     res = requests.get(URL, headers=headers())
-    return res.content
+    cookie_page = res.content
+    return cookie_page
 
 def parcing_price(page_html):
     soup = bs(page_html, 'html.parser')
