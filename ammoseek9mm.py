@@ -3,6 +3,10 @@ import lxml
 from bs4 import BeautifulSoup as bs
 import RandomHeaders
 
+
+
+
+
 URL = 'https://ammoseek.com/ammo/9mm-luger'
 
 def headers():
@@ -16,7 +20,7 @@ def get_page_url(URL):
 
 def parcing_price(page_html):
     soup = bs(page_html, 'html.parser')
-    price = soup.find_all("div", {"class": "results-info-content"})
+    price = soup.find("div", {"class": "results-info-content"})
     print(price)
     return price
 

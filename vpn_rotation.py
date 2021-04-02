@@ -4,7 +4,7 @@ def closeConnection():
 	subprocess.call(["sudo", "killall openvpn"])
 	
 def openConnection(argument):
-	subprocess.call(["sudo", "./openvpn", argument])
+	subprocess.call(["sudo", "openvpn", argument])
 
 if __name__ == "__main__":
 
