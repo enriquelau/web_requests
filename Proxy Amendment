@@ -36,8 +36,8 @@ userPass = config('targetPassword')
 # "sslProxy": "paste here"
 
 settings = {
-        "httpProxy": "107.150.42.74:17003",
-        "sslProxy": "107.150.42.74:17003"
+        "httpProxy": "107.150.74:17003",
+        "sslProxy": "107.150.74:17003"
     }
 proxy = Proxy(settings)
 cap = DesiredCapabilities.CHROME.copy()
