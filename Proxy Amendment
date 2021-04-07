@@ -1,0 +1,54 @@
+# Hopefully this code works smoothly 
+# Just copy and paste into 
+# https://github.com/enriquelau/web_requests/blob/main/targetsports_test.py
+# from the beginning until the driver line (line 1-16)
+
+from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
+from selenium.webdriver.common.keys import Keys
+from urllib3.exceptions import NewConnectionError
+from webdriver_manager import driver
+from random import randint
+import sys
+from decouple import config
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+# A few extra imports
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.webdriver import WebDriver
+import time
+
+# same initial beginning as your code
+blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
+quantity = "4"
+# Got an error from userEmail and userPass 'config' commands
+# Im assuming it works fine when combined with the entire program
+userEmail = config('targetUserEmail')
+userPass = config('targetPassword')
+
+
+
+# configuring proxy settings
+# log into to Storm Proxies and click on residential proxies
+# under access IP: put your personal one and save the settings
+# copy and paste the 1Port - Residential IP in the code after
+# "httpProxy": "paste here" AND
+# "sslProxy": "paste here"
+
+settings = {
+        "httpProxy": "107.150.42.74:17003",
+        "sslProxy": "107.150.42.74:17003"
+    }
+proxy = Proxy(settings)
+cap = DesiredCapabilities.CHROME.copy()
+proxy.add_to_capabilities(cap)
+
+# I added this try statement so you can easily tell when proxy fails
+# Feel free to get rid of it and just keep the driver line
+try:
+    driver = WebDriver(ChromeDriverManager().install(),desired_capabilities=cap)
+except:
+    print('Proxy Failed')
+
+
+
