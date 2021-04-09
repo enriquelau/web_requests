@@ -51,4 +51,19 @@ except:
     print('Proxy Failed')
 
 
+#Put wherever you post your other functions
+def checkIP():
+    import requests
 
+    #change to your proxy
+    proxy = '107.150.42.74:17003'
+
+    #remove this part from the request.get line to check your home ip
+    # ,proxies={'http': proxy, 'https': proxy}
+    try:
+        r = requests.get('https://httpbin.org/ip',proxies={'http': proxy, 'https': proxy})
+        print(r.text)
+    except:
+        print('Proxy failed to connect')
+
+# use command: checkIP()
