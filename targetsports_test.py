@@ -5,10 +5,16 @@ from urllib3.exceptions import NewConnectionError
 from webdriver_manager import driver
 from webdriver_manager.chrome import ChromeDriverManager
 from random import randint
+import requests
 import time
 import sys
+import RandomHeaders
 from decouple import config
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.webdriver import WebDriver
 
+PROXY_TEST_URL = "http://ipinfo.io/ip"
 blazer_brass_124 = 'https://www.targetsportsusa.com/cci-blazer-brass-9mm-luger-ammo-124-grain-full-metal-jacket-5201-p-4172.aspx'
 quantity = "4"
 userEmail = config('targetUserEmail')
@@ -17,6 +23,24 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 
 # Test website
 # blazer_brass_124 = "https://www.targetsportsusa.com/federal-ae-357-sig-125-gr-ammo-fmj-ae357s2-p-1716.aspx"
+
+RandomHeaders.LoadHeader()
+'''
+settings = {
+        "httpProxy": "107.150.42.74:17003",
+        "sslProxy": "107.150.42.74:17003"
+    }
+proxy = Proxy(settings)
+cap = DesiredCapabilities.CHROME.copy()
+proxy.add_to_capabilities(cap)
+
+# I added this try statement so you can easily tell when proxy fails
+# Feel free to get rid of it and just keep the driver line
+try:
+    driver = WebDriver(ChromeDriverManager().install(),desired_capabilities=cap)
+except:
+    print('Proxy Failed')
+'''
 
 def sleep(secs):
     time.sleep(secs)
@@ -28,6 +52,7 @@ def check_status(get_status):
         if status == "OUT OF STOCK":
             sleep(randint(5,15))
             driver.refresh()
+            # proxy()
         elif status == "AVAILABLE :":
             # Here is where some logic will need to be added
             # to pause the VPN change service

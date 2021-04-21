@@ -4,9 +4,6 @@ from bs4 import BeautifulSoup as bs
 import RandomHeaders
 
 
-
-
-
 URL = 'https://ammoseek.com/ammo/9mm-luger'
 
 def headers():
