@@ -157,7 +157,8 @@ def submit_payment(shipping_info, payment_info, csrf_token):
             "&dwfrm_billing_creditCardFields_expirationYear=" + payment_info["expirationYear"] + \
             "&dwfrm_billing_creditCardFields_securityCode=" + payment_info["securityCode"]
 
-    response = session.post(url + query)
+    response = session.post(url + query).json()
+    
 
     # check the returned json if everything was properly validated
     return response.json()["form"]["valid"]
