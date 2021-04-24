@@ -71,7 +71,11 @@ def verify_address(shipmentUUID):
 
     url = "https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/CheckoutShippingServices-UpdateShippingMethodsList?firstName=&lastName=&address1=" + street + "&address2="+street2+"&city=&postalCode=&stateCode=TX&countryCode=US&phone=&shipmentUUID=" + shipmentUUID
     response = session.post(url)
-    return response.json()["shippingForm"]["valid"]
+    
+    if response.status_code == 200:
+        return response.json()["shippingForm"]["valid"]
+    
+    return False
 
 
 def get_csrf_token():
@@ -131,10 +135,12 @@ def submit_shipping(shipmentUUID, shipping_info, csrf_token):
             "&csrf_token=" + csrf_token
 
     response = session.post(url + query)
-
-    # check if everything was properly validated
-    return response.json()["form"]["valid"]
-
+    
+    if response.status_code == 200:
+        # check if everything was properly validated
+        return response.json()["form"]["valid"]
+    
+    return False
 
 def submit_payment(shipping_info, payment_info, csrf_token):
     url = "https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/CheckoutServices-SubmitPayment"
@@ -162,15 +168,22 @@ def submit_payment(shipping_info, payment_info, csrf_token):
 
     response = session.post(url + query)
 
-    # check the returned json if everything was properly validated
-    return response.json()["form"]["valid"]
+    if response.status_code == 200:
+        # check if everything was properly validated
+        return response.json()["form"]["valid"]
+    
+    return False
 
 
 def place_order():
     url = "https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/CheckoutServices-PlaceOrder"
     response = session.post(url)
     # check the returned json if there was an error in placing the order
-    return response.json()["error"]
+    
+    if response.status_code == 200:
+        return response.json()["error"]
+    
+    return False
 
 
 def purchase(soup):
