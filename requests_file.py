@@ -38,7 +38,10 @@ def add_to_cart(pid):
     response = session.post('https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/Cart-AddProduct',
                             data='pid=' + pid + '&quantity=' + str(quantity), headers=headers)
 
-    return response.status_code
+    if response.status_code == 200:
+        return not response.json().get('error')
+    
+    return False
 
 
 def get_state_restriction(shipping_info):
