@@ -106,7 +106,7 @@ def build_payment_info():
 	# use env variables in production
 	payment_info = {"cardType": environ.get("CARDTYPE"), "cardNumber": environ.get("CARDNUMBER"),
 					 "expirationMonth": environ.get("EXPIRATIONMONTH"),
-					 "expirationYear": environ.get("EXPIRATIONYEAR"), "securityCode": environ.get("SECURTYCODE")
+					 "expirationYear": environ.get("EXPIRATIONYEAR"), "securityCode": environ.get("SECURITYCODE")
 					 }
 
 	#payment_info = {"cardType": "Visa", "cardNumber": "4767718334205707", "expirationMonth": "4", "expirationYear": "2027", "securityCode": "170"}
@@ -147,6 +147,8 @@ def submit_shipping(shipmentUUID, shipping_info, csrf_token):
 
 def submit_payment(shipping_info, payment_info, csrf_token):
 	url = "https://www.speer.com/on/demandware.store/Sites-VistaSpeer-Site/default/CheckoutServices-SubmitPayment"
+
+	print("token: " + str(csrf_token))
 
 	# build query string for post request
 	query = "?addressSelector=manual-entry&" \
