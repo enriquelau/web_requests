@@ -1,3 +1,4 @@
+import requests as req
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException, StaleElementReferenceException
@@ -12,12 +13,12 @@ from decouple import config
 # url = 'https://www.federalpremium.com/handgun/american-eagle/american-eagle-handgun/11-AE45A100.html'
 url = 'https://hkparts.net/product/9mm-ejector-lever-3rd-gen-p58.htm/'
 
-#options = Options()
-#options.add_argument('--headless')
-#options.add_argument('--disable-gpu') 
-#driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-driver = webdriver.Chrome(ChromeDriverManager().install())
-quantity = "40"
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu') 
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+#driver = webdriver.Chrome(ChromeDriverManager().install())
+quantity = "4"
 userEmail = config('federalUserEmail')
 password = config('federalPassword')
 creditCard = config('creditCard')
@@ -25,10 +26,8 @@ cardMonth = config('cardMonth')
 cardYear = config('cardYear')
 cardSecurityCode = config('cardSecurityCode')
 
-
 def sleep(secs):
     time.sleep(secs)
-
 
 def check_status(get_status):
     status = get_status
@@ -39,11 +38,11 @@ def check_status(get_status):
             driver.delete_all_cookies()
             sleep(1)
             driver.refresh()
-        elif status == "Available":
+        elif status == "In stock":
             print('Available, proceeding to checkout')
             return
 
-
+'''
 def add_to_cart():
     attempts = 0
     for attempts in range(0, 6):
@@ -136,7 +135,7 @@ def process_purchase():
         print('Order successfully placed, check email for confirmation')
     except NoSuchElementException:
         pass
-
+'''
 
 def get_url():
     tries = 0
@@ -151,7 +150,7 @@ def get_url():
             sleep(1)
             tries += 1
             continue
-    process_purchase()
+    #process_purchase()
 
 
 get_url()
