@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 
 '''
-Today's lesson: 
+Todo: 
 
 1. Need to store the cookie sessions to make the session persist for checkout. 
 2. Need to implement a way to hold the csrf token, which will require a function 
